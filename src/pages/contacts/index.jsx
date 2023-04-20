@@ -1,14 +1,25 @@
 import React from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, IconButton } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import Header from "../../components/Header";
 
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const handleEdit = (row) => {
+    // Adicione aqui a lógica para editar um contato
+  };
+
+  const handleDelete = (id) => {
+    // Adicione aqui a lógica para excluir um contato
+  };
+
   const columns = [
     { field: "id", headerName: "Id", width: 100 },
     { field: "registrarId", headerName: "Registrar Id", width: 100 },
@@ -31,11 +42,34 @@ const Contacts = () => {
     { field: "address", headerName: "Address", width: 250 },
     { field: "city", headerName: "City", width: 100 },
     { field: "zipCode", headerName: "Zip Code", width: 100 },
+    {
+      field: "edit",
+      headerName: "Edit",
+      sortable: false,
+      width: 100,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleEdit(params.row)}>
+          <EditIcon />
+        </IconButton>
+      ),
+    },
+    {
+      field: "delete",
+      headerName: "Delete",
+      sortable: false,
+      width: 100,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleDelete(params.row.id)}>
+          <DeleteIcon />
+        </IconButton>
+      ),
+    },
   ];
+
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="CONTACTS" subtitle="welcome to you Contacts" />
+        <Header title="CONTACTS" subtitle="welcome to your Contacts" />
       </Box>
       <Box
         m="8px 0 0 0"
