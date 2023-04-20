@@ -1,0 +1,42 @@
+{
+  "login": [
+    {
+      "email": "demo@minimals.cc",
+      "password": "000000",
+      "returnSecureToken": true,
+      "id": 1
+    },
+    {
+      "email": "demo@minimals.cc",
+      "password": "000000",
+      "returnSecureToken": true,
+      "id": 2
+    },
+    {
+      "email": "demo@minimals.cc",
+      "password": "000000",
+      "returnSecureToken": true,
+      "id": 3
+    },
+    {
+      "email": "demo@minimals.cc",
+      "password": "000000",
+      "returnSecureToken": true,
+      "id": 4
+    }
+  ],
+  "tarefas": [
+    {
+      "nome": "scscc",
+      "equipe": "csscsc",
+      "descricao": "cscscs",
+      "data": "2023-05-03",
+      "id": 1
+    }
+  ],
+  "agenda": [
+    {
+      
+    }
+  ]
+}
