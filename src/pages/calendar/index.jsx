@@ -106,153 +106,153 @@ const Calendar = () => {
 
   return (
     <Box m="20px">
-      <Header title="Calendario" subtitle="Adicione sua agenda!" />
-      <Grid container spacing={2}>
-        <Grid xs={12} md={4}>
-          <Box
-            backgroundColor={colors.primary[400]}
-            p="15px"
-            borderRadius="4px"
-          >
-            <Typography variant="h5">Compromissos</Typography>
-            <List>
-              {currentEvents.map((event) => (
-                <ListItem
-                  key={event.id}
-                  sx={{
-                    backgroundColor:
-colors.secondary[200],
-borderRadius: "4px",
-marginBottom: "8px",
-}}
-secondaryAction={
-<>
-<IconButton
-edge="end"
-onClick={() => handleEditEvent(event)}
->
-<EditIcon />
-</IconButton>
-<IconButton
-edge="end"
-onClick={() => {
-setEditingEvent(event);
-handleDeleteEvent();
-}}
->
-<DeleteIcon />
-</IconButton>
-</>
-}
->
-<ListItemText
-primary={event.title}
-secondary={formatDate(
-event.start,
-{
-year: "numeric",
-month: "numeric",
-day: "numeric",
-hour: "numeric",
-minute: "numeric",
-},
-{ timeZone: "UTC" }
-)}
-/>
-</ListItem>
-))}
-</List>
-<Box display="flex" justifyContent="flex-end">
-<Button
-             variant="contained"
-             color="primary"
-             onClick={handleSaveEvents}
-           >
-Salvar
-</Button>
-</Box>
-</Box>
-</Grid>
-<Grid xs={12} md={8}>
-<FullCalendar
-plugins={[
-dayGridPlugin,
-timeGridPlugin,
-interactionPlugin,
-listPlugin,
-]}
-initialView="dayGridMonth"
-events={currentEvents}
-headerToolbar={{
-start: "prev,next today",
-center: "title",
-end: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
-}}
-editable={true}
-selectable={true}
-selectMirror={true}
-dayMaxEvents={true}
-weekends={true}
-initialEvents={[]}
-dateClick={handleDateClick}
-eventClick={handleEventClick}
-/>
-</Grid>
-      </Grid>
-  {dialogOpen && (
+    <Header title="Calendário" subtitle="Adicione sua agenda!" />
+    <Grid container spacing={2}>
+    <Grid xs={12} md={4}>
     <Box
-      sx={{
-        backgroundColor: colors.secondary[100],
-        borderRadius: "4px",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        padding: "20px",
-      }}
+             backgroundColor={colors.primary[400]}
+             p="15px"
+             borderRadius="4px"
+           >
+    <Typography variant="h5">Compromissos</Typography>
+    <List>
+    {currentEvents.map((event) => (
+    <ListItem
+    key={event.id}
+    sx={{
+    backgroundColor:
+    colors.secondary[200],
+    borderRadius: "4px",
+    marginBottom: "8px",
+    }}
+    secondaryAction={
+    <>
+    <IconButton
+    edge="end"
+    onClick={() => handleEditEvent(event)}
+    
+    <EditIcon />
+    </IconButton>
+    <IconButton
+    edge="end"
+    onClick={() => {
+    setEditingEvent(event);
+    handleDeleteEvent();
+    }}
     >
-      <Typography variant="h5">
-        {editingEvent ? "Editar Compromisso" : "Adicionar Compromisso"}
-      </Typography>
-      <TextField
-        label="Título"
-        variant="outlined"
-        fullWidth
-        value={eventTitle}
-        onChange={(e) => setEventTitle(e.target.value)}
-        sx={{ margin: "10px 0" }}
-      />
-      {editingEvent && (
-        <Typography variant="subtitle1" sx={{ margin: "10px 0" }}>
-          {`Evento atual: ${editingEvent.title}`}
-        </Typography>
-      )}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleAddEvent}
-        disabled={!eventTitle}
-      >
-        {editingEvent ? "Salvar Alterações" : "Adicionar"}
-      </Button>
-      {editingEvent && (
-        <Button
-          variant="contained"
-          color="error"
-          onClick={handleDeleteEvent}
-          sx={{ marginLeft: "10px" }}
+    <DeleteIcon />
+    </IconButton>
+    </>
+    }
+    >
+    <ListItemText
+    primary={event.title}
+    secondary={formatDate(
+    event.start,
+    {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    },
+    { timeZone: "UTC" }
+    )}
+    />
+    </ListItem>
+    ))}
+    </List>
+    <Box display="flex" justifyContent="flex-end">
+    <Button
+                 variant="contained"
+                 color="primary"
+                 onClick={handleSaveEvents}
+               >
+    Salvar
+    </Button>
+    </Box>
+    </Box>
+    </Grid>
+    <Grid xs={12} md={8}>
+    <FullCalendar
+    plugins={[
+    dayGridPlugin,
+    timeGridPlugin,
+    interactionPlugin,
+    listPlugin,
+    ]}
+    initialView="dayGridMonth"
+    events={currentEvents}
+    headerToolbar={{
+    start: "prev,next today",
+    center: "title",
+    end: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+    }}
+    editable={true}
+    selectable={true}
+    selectMirror={true}
+    dayMaxEvents={true}
+    weekends={true}
+    initialEvents={[]}
+    dateClick={handleDateClick}
+    eventClick={handleEventClick}
+    />
+    </Grid>
+          </Grid>
+      {dialogOpen && (
+        <Box
+          sx={{
+            backgroundColor: colors.secondary[100],
+            borderRadius: "4px",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            padding: "20px",
+          }}
         >
-          Deletar
-        </Button>
-      )}
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleDialogClose}
-        sx={{ marginLeft: "10px" }}
-      >
-        Cancelar
-      </Button>
+          <Typography variant="h5">
+            {editingEvent ? "Editar Compromisso" : "Adicionar Compromisso"}
+          </Typography>
+          <TextField
+            label="Título"
+            variant="outlined"
+            fullWidth
+            value={eventTitle}
+            onChange={(e) => setEventTitle(e.target.value)}
+            sx={{ margin: "10px 0" }}
+          />
+          {editingEvent && (
+            <Typography variant="subtitle1" sx={{ margin: "10px 0" }}>
+              {`Evento atual: ${editingEvent.title}`}
+            </Typography>
+          )}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddEvent}
+            disabled={!eventTitle}
+          >
+            {editingEvent ? "Salvar Alterações" : "Adicionar"}
+          </Button>
+          {editingEvent && (
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDeleteEvent}
+              sx={{ marginLeft: "10px" }}
+            >
+              Deletar
+            </Button>
+          )}
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={handleDialogClose}
+            sx={{ marginLeft: "10px" }}
+          >
+            Cancelar
+          </Button>
     </Box>
   )}
 </Box>
